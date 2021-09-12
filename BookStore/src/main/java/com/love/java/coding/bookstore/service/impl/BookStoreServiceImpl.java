@@ -1,9 +1,8 @@
 package com.love.java.coding.bookstore.service.impl;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
@@ -20,8 +19,8 @@ public class BookStoreServiceImpl implements BookStoreService {
 	private BookStoreRepository bookRepository;
 	
 	@Override
-	public BookEntity findBookById(BigInteger id) {
-		return bookRepository.findById(id).get();
+	public Optional<BookEntity> findBookById(BigInteger id) {
+		return bookRepository.findById(id);
 	}
 
 	@Override
@@ -36,7 +35,7 @@ public class BookStoreServiceImpl implements BookStoreService {
 	}
 
 	@Override
-	public void addNewBook(BookEntity book) {
-		bookRepository.save(book);
+	public BookEntity addNewBook(BookEntity book) {
+		return bookRepository.save(book);
 	}
 }
