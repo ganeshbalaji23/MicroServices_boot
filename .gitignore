@@ -1,0 +1,16 @@
+
+*.class
+*.lst
+UserDetails/mvnw
+*.cmd
+*.java
+*.properties
+*.prefs
+*.original
+*.md
+*.MF
+*.txt
+*.xml
+BookStore/.classpath
+BookStore/.project
+BookStore/target/BookStore-0.0.1-SNAPSHOT.jar
