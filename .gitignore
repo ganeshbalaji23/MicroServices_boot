@@ -32,3 +32,4 @@ shipping-microservice/.mvn/wrapper/maven-wrapper.properties
 shipping-microservice/.mvn/wrapper/MavenWrapperDownloader.java
 order-microservice/.mvn/wrapper/maven-wrapper.jar
 order-microservice/.mvn/wrapper/MavenWrapperDownloader.java
+eureka-server/.mvn/wrapper/maven-wrapper.jar
