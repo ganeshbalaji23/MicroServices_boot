@@ -32,6 +32,9 @@ public class BookEntity {
 	@ManyToOne
 	@JoinColumn(name = "genreId")
 	private GenreEntity genre;
+	
+	@Column(name = "quantity")
+	private Integer quantity;
 
 	public BigInteger getBookId() {
 		return bookId;
@@ -71,6 +74,14 @@ public class BookEntity {
 
 	public void setGenre(GenreEntity genre) {
 		this.genre = genre;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 	
 	

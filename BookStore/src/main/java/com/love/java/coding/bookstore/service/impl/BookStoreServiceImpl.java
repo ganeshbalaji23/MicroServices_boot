@@ -25,7 +25,6 @@ public class BookStoreServiceImpl implements BookStoreService {
 
 	@Override
 	public List<BookEntity> findAllBooks() {
-		
 		return Streamable.of(bookRepository.findAll()).toList();
 	}
 
