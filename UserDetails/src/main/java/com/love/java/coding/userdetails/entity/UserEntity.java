@@ -45,12 +45,12 @@ public class UserEntity {
 	@Column(name = "modified_at")
 	private LocalDate modifiedAt;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
+	@OneToMany(mappedBy = "userId"/* cascade = CascadeType.ALL */)
+	//@JoinColumn(name = "user_id")
 	private Set<AddressEntity> addresses;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
+	@OneToMany(mappedBy = "userId"/* cascade = CascadeType.ALL */)
+	//@JoinColumn(name = "user_id")
 	private Set<PaymentEntity> payments;
 
 	public Integer getUserId() {
@@ -117,20 +117,16 @@ public class UserEntity {
 		this.modifiedAt = modifiedAt;
 	}
 
-	public Set<AddressEntity> getAddresses() {
-		return addresses;
-	}
-
-	public void setAddresses(Set<AddressEntity> addresses) {
-		this.addresses = addresses;
-	}
-
-	public Set<PaymentEntity> getPayments() {
-		return payments;
-	}
-
-	public void setPayments(Set<PaymentEntity> payments) {
-		this.payments = payments;
-	}
+	/*
+	 * public Set<AddressEntity> getAddresses() { return addresses; }
+	 * 
+	 * public void setAddresses(Set<AddressEntity> addresses) { this.addresses =
+	 * addresses; }
+	 * 
+	 * public Set<PaymentEntity> getPayments() { return payments; }
+	 * 
+	 * public void setPayments(Set<PaymentEntity> payments) { this.payments =
+	 * payments; }
+	 */
 	
 }

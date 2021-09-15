@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,8 @@ import com.love.java.coding.userdetails.entity.UserEntity;
 import com.love.java.coding.userdetails.model.User;
 import com.love.java.coding.userdetails.service.UserService;
 
-@RestController("/userdetails")
+@RestController
+@RequestMapping("/userdetails")
 public class UserController {
 	
 	@Autowired

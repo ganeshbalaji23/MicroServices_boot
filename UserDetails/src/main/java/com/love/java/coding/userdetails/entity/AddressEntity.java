@@ -4,6 +4,7 @@ import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,9 +43,9 @@ public class AddressEntity {
 	@Column(name="is_primary_address")
 	private boolean isPrimaryAddress;
 	
-	@ManyToOne
-	@JoinColumn(name="user_id")
-	private UserEntity user;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", referencedColumnName = "uid")
+	private UserEntity userId;
 	
 	public Integer getAddressId() {
 		return addressId;
@@ -54,11 +55,14 @@ public class AddressEntity {
 		this.addressId = addressId;
 	}
 
-	/*
-	 * public BigInteger getUserId() { return userId; }
-	 * 
-	 * public void setUserId(BigInteger userId) { this.userId = userId; }
-	 */
+	public UserEntity getUserId() {
+		return userId;
+	}
+
+	public void setUserId(UserEntity userId) {
+		this.userId = userId;
+	}
+	 
 
 	public String getAddressLine1() {
 		return addressLine1;
@@ -116,12 +120,10 @@ public class AddressEntity {
 		this.isPrimaryAddress = isPrimaryAddress;
 	}
 
-	public UserEntity getUser() {
-		return user;
-	}
-
-	public void setUser(UserEntity user) {
-		this.user = user;
-	}
+	/*
+	 * public UserEntity getUser() { return user; }
+	 * 
+	 * public void setUser(UserEntity user) { this.user = user; }
+	 */
 
 }

@@ -4,6 +4,7 @@ import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,11 +42,10 @@ public class PaymentEntity {
 
 	@Column(name = "expiry")
 	private String expiry;
-
-	@ManyToOne
-	@JoinColumn(name="user_id")
-	private UserEntity user;
-	 
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", referencedColumnName = "uid")
+	private UserEntity userId;
 
 	public Integer getUserPaymentId() {
 		return userPaymentId;
@@ -55,11 +55,14 @@ public class PaymentEntity {
 		this.userPaymentId = userPaymentId;
 	}
 
-	/*
-	 * public BigInteger getUserId() { return userId; }
-	 * 
-	 * public void setUserId(BigInteger userId) { this.userId = userId; }
-	 */
+	public UserEntity getUserId() {
+		return userId;
+	}
+
+	public void setUserId(UserEntity userId) {
+		this.userId = userId;
+	}
+
 	public String getPaymentType() {
 		return paymentType;
 	}
@@ -92,12 +95,10 @@ public class PaymentEntity {
 		this.expiry = expiry;
 	}
 
-	public UserEntity getUser() {
-		return user;
-	}
-
-	public void setUser(UserEntity user) {
-		this.user = user;
-	}
+	/*
+	 * public UserEntity getUser() { return user; }
+	 * 
+	 * public void setUser(UserEntity user) { this.user = user; }
+	 */
 	 	
 }

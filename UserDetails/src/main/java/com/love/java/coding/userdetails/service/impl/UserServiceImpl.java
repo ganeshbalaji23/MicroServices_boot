@@ -28,9 +28,9 @@ public class UserServiceImpl implements UserService {
 	public String addUser(User user) {
 		UserEntity userEntity = setUserData(user);
 		UserEntity savedUser = userRepository.save(userEntity);
-		savedUser.setAddresses(setAddresses(Arrays.asList(user.getAddress()), savedUser));
-		savedUser.setPayments(setPayments(Arrays.asList(user.getPayment()), savedUser));
-		userRepository.save(savedUser);
+		//savedUser.setAddresses(setAddresses(Arrays.asList(user.getAddress()), savedUser));
+		//savedUser.setPayments(setPayments(Arrays.asList(user.getPayment()), savedUser));
+		userRepository.saveAndFlush(savedUser);
 		return savedUser.getUserName();
 		
 	}
@@ -52,6 +52,7 @@ public class UserServiceImpl implements UserService {
 		boolean isUserAvailable = checkUserAvailability(userName);
 		
 		if(isUserAvailable) {
+		//	UserEntity deleteUser = 
 			userRepository.deleteByUserName(userName);
 			isUserAvailable = checkUserAvailability(userName);
 		}
@@ -64,43 +65,6 @@ public class UserServiceImpl implements UserService {
 		UserEntity userByName = userRepository.findByUserName(userName).get();
 		userByName.setPassword(null);
 		return userByName;
-	}
-	
-	private Set<PaymentEntity> setPayments(List<UserPayment> payment, UserEntity savedUser) {
-		Set<PaymentEntity> payments = payment.stream().map(val -> createPaymentEntity(val,savedUser)).collect(Collectors.toSet());
-		return payments;
-	}
-	
-
-	private PaymentEntity createPaymentEntity(UserPayment payment, UserEntity savedUser) {
-		
-		PaymentEntity paymentEntity = new PaymentEntity();
-		paymentEntity.setUser(savedUser);
-		paymentEntity.setAccountNo(payment.getAccountNo());
-		paymentEntity.setExpiry(payment.getExpiry());
-		paymentEntity.setPaymentType(payment.getPaymentType());
-		paymentEntity.setProvider(payment.getProvider());
-		return paymentEntity;
-	}
-
-	private Set<AddressEntity> setAddresses(List<UserAddress> address, UserEntity savedUser) {
-		
-		Set<AddressEntity> addresses = address.stream().map(val -> createAddressEntity(val,savedUser)).collect(Collectors.toSet());
-		return addresses;
-	}
-	
-	private AddressEntity createAddressEntity(UserAddress address, UserEntity savedUser) {
-		
-		AddressEntity addressEntity = new AddressEntity();
-		addressEntity.setUser(savedUser);
-		addressEntity.setAddressLine1(address.getAddressLine1());
-		addressEntity.setAddressLine2(address.getAddressLine2());
-		addressEntity.setCity(address.getCity());
-		addressEntity.setCountry(address.getCountry());
-		addressEntity.setPostalCode(address.getPostalCode());
-		addressEntity.setMobile(address.getMobile());
-		addressEntity.setPrimaryAddress(true);
-		return addressEntity;
 	}
 	
 	private UserEntity setUserData(User user) {

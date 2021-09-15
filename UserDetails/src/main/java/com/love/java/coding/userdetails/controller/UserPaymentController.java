@@ -1,6 +1,5 @@
 package com.love.java.coding.userdetails.controller;
 
-import java.math.BigInteger;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +10,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.love.java.coding.userdetails.entity.PaymentEntity;
 import com.love.java.coding.userdetails.entity.UserEntity;
+import com.love.java.coding.userdetails.repository.PaymentDetailsRepository;
 import com.love.java.coding.userdetails.service.UserService;
 
-@RestController("/userpayment")
+@RestController
+@RequestMapping("/userpayment")
 public class UserPaymentController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private PaymentDetailsRepository paymentDetailsRepository;
 	
 	
 	@GetMapping("/getpayments")
@@ -30,7 +35,8 @@ public class UserPaymentController {
 		
 		UserEntity user = userService.getUserDetails(userName);
 		if(user != null) {
-			return ResponseEntity.status(HttpStatus.OK).body(user.getPayments());
+			Set<PaymentEntity> payment = paymentDetailsRepository.findAllByUserId(user);
+			return ResponseEntity.status(HttpStatus.OK).body(payment);
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 	}
@@ -39,8 +45,10 @@ public class UserPaymentController {
 	public ResponseEntity<String> addUserPayment(@PathVariable String userName, @RequestBody PaymentEntity userPayment) {
 		UserEntity user = userService.getUserDetails(userName);
 		if(user != null) {
-			user.getPayments().add(userPayment);
-			userService.saveUser(user);
+			userPayment.setUserId(user);
+			paymentDetailsRepository.save(userPayment);
+			//user.getPayments().add(userPayment);
+			//userService.saveUser(user);
 			return ResponseEntity.status(HttpStatus.OK).body("Payment mode added");
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -50,9 +58,10 @@ public class UserPaymentController {
 	public ResponseEntity<String> deleteUserPayment(@PathVariable String userName, @RequestParam Integer paymentId ) {
 		UserEntity user = userService.getUserDetails(userName);
 		if(user != null) {
-			PaymentEntity removePayment = user.getPayments().stream().filter(val -> val.getUserPaymentId() == paymentId).findAny().get();
-			user.getPayments().remove(removePayment);
-			userService.saveUser(user);
+			paymentDetailsRepository.deleteById(paymentId);
+			//PaymentEntity removePayment = user.getPayments().stream().filter(val -> val.getUserPaymentId() == paymentId).findAny().get();
+			//user.getPayments().remove(removePayment);
+			//userService.saveUser(user);
 			return ResponseEntity.status(HttpStatus.OK).body("Payment mode removed");
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
