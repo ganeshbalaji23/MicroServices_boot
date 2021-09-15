@@ -4,6 +4,8 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
+@RefreshScope
 @RequestMapping("/bookstore")
 public class BookStoreController {
 	
@@ -114,6 +117,14 @@ public class BookStoreController {
 	public ResponseEntity<String> addBook(@RequestBody final BookEntity book) {
 		BookEntity entity = bookService.addNewBook(book);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Book created successfully!");
+	}
+	
+	@Value("${spring.application.name: Unable to connect to config server}")
+	private String appName;
+	
+	@GetMapping("/app-name")
+	public String getAppName() {
+		return appName;
 	}
 
 }

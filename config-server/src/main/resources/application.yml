@@ -1,0 +1,30 @@
+server:
+  port: 8888
+
+#management:
+  #security:
+  # disable security of the config server
+    #enabled: false
+
+spring:
+  application:
+    name: spring-config-server
+
+  cloud:
+    config:
+      server:
+        git:
+          default-label: main
+          uri: https://github.com/ganeshbalaji23/MicroServices_boot.git
+          search-paths: config-properties/
+          #clone-on-start: true
+
+  profiles:
+    active: local,development,production
+    
+
+
+  #security:
+#user:
+  #    name: root
+ #     password: root
