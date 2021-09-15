@@ -9,3 +9,10 @@ UserDetails/.mvn/wrapper/maven-wrapper.jar
 UserDetails/.mvn/wrapper/maven-wrapper.jar
 *.jar
 UserDetails/.mvn/wrapper/maven-wrapper.jar
+config-server/mvnw.cmd
+config-server/mvnw
+config-server/.mvn/wrapper/MavenWrapperDownloader.java
+config-server/.mvn/wrapper/maven-wrapper.jar
+config-server/.mvn/wrapper/maven-wrapper.properties
+config-server/.mvn/wrapper/maven-wrapper.jar
+*.jar
