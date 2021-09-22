@@ -1,5 +1,6 @@
 package com.love.java.coding.ordermicroservice.controller;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.love.java.coding.ordermicroservice.client.BookClient;
+import com.love.java.coding.ordermicroservice.entity.BookEntity;
 import com.love.java.coding.ordermicroservice.entity.OrderEntity;
 import com.love.java.coding.ordermicroservice.service.OrderService;
 
@@ -22,6 +25,9 @@ public class OrdersController {
 	
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private BookClient bookClient;
 	
 	//getOrders
 	@GetMapping("/getall")
@@ -48,6 +54,16 @@ public class OrdersController {
 	public ResponseEntity<Integer> cancelOrder(@RequestParam Integer orderId) {
 		Integer newOrderId = orderService.cancelOrder(orderId);
 		return ResponseEntity.status(HttpStatus.OK).body(newOrderId);
+	}
+	
+	@GetMapping("/getbooks")
+	public ResponseEntity<List<BookEntity>> getAllBooks() {
+		return bookClient.getAllBooks();
+	}
+	
+	@GetMapping("/bookgenre")
+	public ResponseEntity<List<BookEntity>> getBooksByGenre(@RequestParam(value = "genre") final String genre) {
+		return bookClient.getBooksByGenre(genre);
 	}
 	
 }
