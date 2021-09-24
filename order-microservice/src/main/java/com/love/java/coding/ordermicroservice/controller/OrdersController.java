@@ -10,17 +10,20 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.love.java.coding.ordermicroservice.client.BookClient;
-import com.love.java.coding.ordermicroservice.entity.BookEntity;
 import com.love.java.coding.ordermicroservice.entity.OrderEntity;
+import com.love.java.coding.ordermicroservice.model.BookEntity;
+import com.love.java.coding.ordermicroservice.model.TransactionRequest;
+import com.love.java.coding.ordermicroservice.model.TransactionResponse;
 import com.love.java.coding.ordermicroservice.service.OrderService;
 
 @RestController
-@RequestMapping("/users/orders")
+@RequestMapping("/orders")
 public class OrdersController {
 	
 	@Autowired
@@ -44,9 +47,8 @@ public class OrdersController {
 	
 	//addOrders
 	@PostMapping("/add")
-	public ResponseEntity<Integer> createOrder(@RequestParam OrderEntity entity) {
-		Integer newOrderId = orderService.newOrder(entity);
-		return ResponseEntity.status(HttpStatus.CREATED).body(newOrderId);
+	public TransactionResponse createOrder(@RequestBody TransactionRequest request) {
+		return orderService.newOrder(request);
 	}
 	
 	//cancelOrders

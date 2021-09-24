@@ -17,7 +17,7 @@ import com.love.java.coding.userdetails.model.User;
 import com.love.java.coding.userdetails.service.UserService;
 
 @RestController
-@RequestMapping("/userdetails")
+@RequestMapping("/user/details")
 public class UserController {
 	
 	@Autowired

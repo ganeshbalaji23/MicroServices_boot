@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,7 @@ import com.love.java.coding.shippingmicroservice.entity.ShippingEntity;
 import com.love.java.coding.shippingmicroservice.service.ShippingService;
 
 @RestController
-@RequestMapping("/users/orders/shipping")
+@RequestMapping("/shipping")
 public class ShippingController {
 	
 	@Autowired
@@ -38,9 +39,8 @@ public class ShippingController {
 	
 	//addOrders
 	@PostMapping("/add")
-	public ResponseEntity<Integer> createShipmentForOrder(@RequestParam ShippingEntity entity) {
-		Integer trackId = shippingService.newOrder(entity);
-		return ResponseEntity.status(HttpStatus.CREATED).body(trackId);
+	public ShippingEntity createShipmentForOrder(@RequestBody ShippingEntity entity) {
+		return shippingService.newOrder(entity);
 	}
 	
 	//cancelOrders

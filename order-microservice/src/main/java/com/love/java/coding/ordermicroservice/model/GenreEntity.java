@@ -1,11 +1,6 @@
-package com.love.java.coding.ordermicroservice.entity;
+package com.love.java.coding.ordermicroservice.model;
 
 import java.math.BigInteger;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 public class GenreEntity {
 	

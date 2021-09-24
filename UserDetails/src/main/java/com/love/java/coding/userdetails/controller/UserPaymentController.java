@@ -20,7 +20,7 @@ import com.love.java.coding.userdetails.repository.PaymentDetailsRepository;
 import com.love.java.coding.userdetails.service.UserService;
 
 @RestController
-@RequestMapping("/userpayment")
+@RequestMapping("/user/payment")
 public class UserPaymentController {
 	
 	@Autowired

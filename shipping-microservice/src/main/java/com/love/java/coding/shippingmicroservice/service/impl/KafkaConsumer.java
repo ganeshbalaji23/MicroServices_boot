@@ -3,7 +3,7 @@ package com.love.java.coding.shippingmicroservice.service.impl;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-import com.love.java.coding.shippingmicroservice.entity.BookEntity;
+import com.love.java.coding.shippingmicroservice.model.BookEntity;
 
 @Service
 public class KafkaConsumer {

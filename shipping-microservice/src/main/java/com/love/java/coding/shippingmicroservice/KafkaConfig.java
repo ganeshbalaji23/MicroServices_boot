@@ -12,7 +12,7 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 
-import com.love.java.coding.shippingmicroservice.entity.BookEntity;
+import com.love.java.coding.shippingmicroservice.model.BookEntity;
 
 @EnableKafka
 @Configuration

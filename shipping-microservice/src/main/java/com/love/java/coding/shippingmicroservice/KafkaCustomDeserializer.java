@@ -4,7 +4,7 @@ import org.apache.kafka.common.errors.SerializationException;
 import org.apache.kafka.common.serialization.Deserializer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.love.java.coding.shippingmicroservice.entity.BookEntity;
+import com.love.java.coding.shippingmicroservice.model.BookEntity;
 
 public class KafkaCustomDeserializer implements Deserializer<BookEntity> {
 

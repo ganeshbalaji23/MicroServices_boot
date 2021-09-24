@@ -10,7 +10,7 @@ public interface ShippingService {
 
 	ShippingEntity getShippmentDetails(Integer orderId);
 
-	Integer newOrder(ShippingEntity entity);
+	ShippingEntity newOrder(ShippingEntity entity);
 
 	Integer cancelByOrderId(Integer orderId);
 

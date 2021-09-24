@@ -161,6 +161,5 @@ public class BookStoreController {
 		kafkaTemplate2.send(TOPIC2, book);
 		return "Published Sucessfully";
 	}
-			 
 
 }

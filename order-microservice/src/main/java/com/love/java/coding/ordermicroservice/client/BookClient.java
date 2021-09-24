@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.love.java.coding.ordermicroservice.entity.BookEntity;
+import com.love.java.coding.ordermicroservice.model.BookEntity;
 
 @FeignClient(name = "book-microservice")
 public interface BookClient {

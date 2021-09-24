@@ -1,4 +1,4 @@
-package com.love.java.coding.shippingmicroservice.entity;
+package com.love.java.coding.shippingmicroservice.model;
 
 import java.math.BigInteger;
 

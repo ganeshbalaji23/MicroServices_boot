@@ -20,7 +20,7 @@ import com.love.java.coding.userdetails.repository.UserAddressRepository;
 import com.love.java.coding.userdetails.service.UserService;
 
 @RestController
-@RequestMapping("/useraddress")
+@RequestMapping("/user/address")
 public class UserAddressController {
 
 	@Autowired
